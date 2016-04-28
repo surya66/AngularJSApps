@@ -1,49 +1,15 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <script type="text/javascript">
-		
-		(function() {
-			Element.prototype._addEventListener = Element.prototype.addEventListener;
-			Element.prototype.addEventListener = function(a,b,c) {
-			this._addEventListener(a,b,c);
-			if(!this.eventListenerList) this.eventListenerList = {};
-			if(!this.eventListenerList[a]) this.eventListenerList[a] = [];
-			this.eventListenerList[a].push(b);
-		 };
-		})();
-			
-    </script>
-</head>
-
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<body>
+<body ng-app="">
 
-<div ng-app="myApp" ng-controller="personCtrl">
+<p>Click the button:</p>
 
-<button id="myBtn" ng-click="toggle()">Hide user</button>
+<button ng-click="count = count + 1" ng-init="count=0">OK</button>
 
-<p ng-hide="myVar">
-First Name: <input type=text ng-model="firstName"><br>
-Last Name: <input type=text ng-model="lastName"><br><br>
-Full Name: {{firstName + " " + lastName}}
-</p>
+<p>The button has been clicked {{count}} times.</p>
 
-</div>
-
-<script>
-var app = angular.module('myApp', []);
-app.controller('personCtrl', function($scope) {
-    $scope.firstName = "John",
-    $scope.lastName = "Doe"
-    $scope.myVar = false;
-    $scope.toggle = function() {
-        $scope.myVar = !$scope.myVar;
-    };
-});
-
-</script> 
+<p>This example increases the value of the variable "count" every time you click the button.</p>
 
 </body>
 </html>
